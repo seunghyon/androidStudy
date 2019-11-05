@@ -12,11 +12,14 @@ import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
     private AppDatabase db ;
+    public LiveData<List<Todo>> todos;
+    public String newTodo;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
         db = Room.databaseBuilder(application, AppDatabase.class, "todo-db")
                 .build();
+        todos = getAll();
     }
 
     public LiveData<List<Todo>> getAll(){
@@ -25,6 +28,10 @@ public class MainViewModel extends AndroidViewModel {
 
     public void insert(Todo todo){
         new InsertAsyncTask(db.todoDao()).execute(todo);
+    }
+
+    public void insertbinding(String todo){
+        new InsertAsyncTask(db.todoDao()).execute(new Todo(todo));
     }
 
     private static class InsertAsyncTask extends AsyncTask<Todo,Void,Void> {
