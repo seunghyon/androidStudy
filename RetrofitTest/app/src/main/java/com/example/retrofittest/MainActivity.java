@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,10 +40,17 @@ public class MainActivity extends AppCompatActivity {
        // addButton = findViewById(R.id.addButton);
         resultTextView = findViewById(R.id.resultTextView);
 
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(JsonHolderApi.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
                 .build();
 
         service = retrofit.create(JsonHolderApi.class);
@@ -96,11 +105,13 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 Post post = response.body();
+                /*
                 if(post.getResult().equals("ok")){
                     resultTextView.setText("성공");
                 }else{
                     resultTextView.setText("실패");
-                }
+                }*/
+                resultTextView.setText(post.getResult());
             }
 
             @Override

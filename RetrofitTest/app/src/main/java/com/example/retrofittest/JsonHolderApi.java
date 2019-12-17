@@ -10,11 +10,11 @@ public interface JsonHolderApi {
 
     String BASE_URL = "http://13.124.242.42/project/";
 
-    @GET("dbtest.php")
+    @GET("allusers.php")
     Call<List<Post>> login(@Query("id") String id,
                           @Query("nickName") String nickName);
 
-    @GET("dbinsert.php")
+    @GET("update.php")
     Call<Post> update(@Query("id") String id,
                            @Query("nickName") String nickName);
 }
