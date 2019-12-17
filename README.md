@@ -20,6 +20,7 @@
 * MyVolley - Volly 사용 예제
 * Navigation - Jetpack Navigation 사용 예제
 * RetrofitTest - retrofit 사용 예제
+* RoomExam - Room, livedata, diffutil, MVVM 패턴을 사용한 할일목록 예제.
 * StopWatch - 스탑워치 사용 예제 (kotlin)
 * TiltSensor - 수평측정기 예제 (kotlin)
 * jsonTEst - json 파싱 사용 예제 
