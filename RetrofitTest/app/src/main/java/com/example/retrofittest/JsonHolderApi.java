@@ -8,7 +8,7 @@ import retrofit2.http.Query;
 
 public interface JsonHolderApi {
 
-    String BASE_URL = "http://13.124.242.42/project/";
+    String BASE_URL = "http://XXXXXXXXXXX/project/";
 
     @GET("allusers.php")
     Call<List<Post>> login(@Query("id") String id,
